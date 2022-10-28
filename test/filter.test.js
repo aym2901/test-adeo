@@ -16,3 +16,11 @@ describe('filter multiple test', () => {
         expect(JSON.stringify(result)).toEqual('[{\"name\":\"Satanwi\",\"people\":[{\"name\":\"Anthony Bruno\",\"animals\":[{\"name\":\"Oryx\"}]}]}]');
     });
 });
+
+describe('filter case insensitive', () => {
+    it('should show the animals matching with the or pattern independently of the case sensitivity', () => {
+        const result = filter(data,'or');
+
+        expect(JSON.stringify(result)).toEqual('[{\"name\":\"Satanwi\",\"people\":[{\"name\":\"Anthony Bruno\",\"animals\":[{\"name\":\"Oryx\"}]}]}]');
+    });
+});
