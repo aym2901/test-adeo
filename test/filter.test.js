@@ -1,9 +1,18 @@
-const {filter} = require('../app');
+const {filter} = require('../src/utils/filter');
+const data = require('../data');
 
 describe('filter test', () => {
     it('should show the animals matching with the ry string pattern', () => {
-        const result = filter('ry');
+        const result = filter(data,'ry');
 
-        expect(result).toEqual('[{"name":"Uzuzozne","people":[{"name":"Lillie Abbott","animals":[{"name":"John Dory"}]}]},{"name":"Satanwi","people":[{"name":"Anthony Bruno","animals":[{"name":"Oryx"}]}]}]');
+        expect(JSON.stringify(result)).toEqual('[{\"name\":\"Uzuzozne\",\"people\":[{\"name\":\"Lillie Abbott\",\"animals\":[{\"name\":\"John Dory\"}]}]},{\"name\":\"Satanwi\",\"people\":[{\"name\":\"Anthony Bruno\",\"animals\":[{\"name\":\"Oryx\"}]}]}]');
+    });
+});
+
+describe('filter multiple test', () => {
+    it('should show the animals matching with the ry string pattern and the yx string pattern', () => {
+        const result = filter(filter(data,'ry'),'yx');
+
+        expect(JSON.stringify(result)).toEqual('[{\"name\":\"Satanwi\",\"people\":[{\"name\":\"Anthony Bruno\",\"animals\":[{\"name\":\"Oryx\"}]}]}]');
     });
 });
